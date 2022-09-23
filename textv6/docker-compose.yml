@@ -1,0 +1,17 @@
+version: "3"
+services:
+  testv6:
+    image: curlimages/curl
+    container_name: testv6
+    # restart: always
+    networks:
+      front-tier:
+    command: ["curl", "ipv6.ip.sb"]
+
+networks:
+  front-tier:
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: "2001:2222:3000::/64"
